@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+        <record id="view_interbanking_import" model="ir.ui.view">
+              <field name="name">Importar Resumen Interbanking</field>
+              <field name="model">resumen.interbanking.import</field>
+              <field name="type">form</field>
+              <field name="arch" type="xml">
+                <form string="Importar Resumen Interbanking" version="7.0">
+                    <group string="Importar Resumen Interbanking">
+                        <field name="filename_resumen"/>
+                        <field name="first_row_column"/>
+                    </group>
+                    <footer>
+                        <button name="resumen_interbanking_import" string="Importar"  type="object" class="oe_highlight"/>
+			or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+		</form>
+	      </field>
+	</record>
+
+    <record id="action_resumen_interbanking_import" model="ir.actions.act_window">
+        <field name="name">Resumen Interbanking Import</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="src_model">account.bank.statement</field>
+        <field name="res_model">resumen.interbanking.import</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.values" id="action_value_import_resumen_interbanking">
+        <field name="name">Importar Resumen Interbanking</field>
+        <field name="key2">client_action_multi</field>
+        <field name="value" eval="'ir.actions.act_window,' +str(ref('action_resumen_interbanking_import'))" />
+        <field name="key">action</field>
+        <field name="model">account.bank.statement</field>
+    </record>
+
+</data>
+</openerp>
